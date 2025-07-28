@@ -1,0 +1,134 @@
+{%  extends 'accounts/main.html' %}
+{%load static%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actinic Keratosis</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #43B7BA, #45a049);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        section {
+            margin: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #43B7BA;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #43B7BA;
+            padding-bottom: 10px;
+        }
+
+        .precaution-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .precaution-list li {
+            background-color: #f9f9f9;
+            margin: 12px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .precaution-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .precaution-list li strong {
+            color: #43B7BA;
+            font-weight: 600;
+        }
+
+       \* footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }*\
+
+           \* footer p {
+            margin: 0;
+        }*\
+
+        /* Media Query for responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 15px;
+            }
+
+            \* footer {
+                font-size: 0.8rem;
+            }*\
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Disease Precaution For Actinic Keratosis</h1>
+      </header>
+
+    <section>
+        <h2>Important Precautions</h2>
+        <ul class="precaution-list">
+            <li><strong>Limit sun exposure:</strong> Avoid direct sunlight, especially between 10 AM and 4 PM, when UV radiation is strongest.</li>
+            <li><strong>Wear sunscreen:</strong> Use broad-spectrum sunscreen with an SPF of 30 or higher on exposed skin every 2 hours, and after swimming or sweating.</li>
+            <li><strong>Wear protective clothing: </strong> Consider hats, sunglasses, and long sleeves to reduce sun exposure.</li>
+            <li><strong>Regular skin checks: </strong> Perform monthly self-examinations of your skin to monitor for any changes or new growths.</li>
+            <li><strong>Visit a dermatologist regularly:</strong> Have your skin examined annually or as recommended by your healthcare provider.</li>
+        </ul>
+    </section>
+
+   <!-- <footer>
+        <p>&copy; 2025 Disease Prevention Organization</p>
+    </footer>-->
+
+</body>
+</html>
+{% endblock content %}

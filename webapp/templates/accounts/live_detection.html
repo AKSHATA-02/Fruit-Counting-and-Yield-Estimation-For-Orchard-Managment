@@ -1,0 +1,70 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 mb-4">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="mb-0">Live Detection</h2>
+                </div>
+                <div class="card-body text-center">
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div class="count-box text-center p-3">
+                                <h6 class="text-muted mb-2">Current Count</h6>
+                                <h2 id="current-count" class="display-4 text-primary mb-0">(see video)</h2>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="count-box text-center p-3">
+                                <h6 class="text-muted mb-2">Maximum Count</h6>
+                                <h2 id="max-count" class="display-4 text-primary mb-0">(see video)</h2>
+                            </div>
+                        </div>
+                         <form id="upload-form" method="post" enctype="multipart/form-data" style="display: none;" action="{% url 'predictImage1' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <input type="file" class="form-control" name="document" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                    </div>
+                    
+                    <div class="video-container w-100 mb-3">
+                        <img id="live-video" src="/live-detection/stream/" class="img-fluid rounded border" alt="Live Detection Stream" style="max-height: 480px; width: 100%; object-fit: contain; background: #222;" />
+                    </div>
+                    <div class="mb-3">
+                        <a href="/" class="btn btn-danger btn-lg">Close Live Detection</a>
+                    </div>
+                    <p class="text-muted">Counts are shown on the video stream in real time.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .count-box {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+    .count-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    .video-container {
+        position: relative;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+    }
+    .video-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+</style>
+{% endblock %} 

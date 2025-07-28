@@ -1,0 +1,113 @@
+{%  extends 'accounts/main.html' %}
+{%load static%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basal Cell Carcinoma (BCC)</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #43B7BA, #45a049);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        section {
+            margin: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #43B7BA;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #43B7BA;
+            padding-bottom: 10px;
+        }
+
+        .precaution-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .precaution-list li {
+            background-color: #f9f9f9;
+            margin: 12px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .precaution-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .precaution-list li strong {
+            color: #43B7BA;
+            font-weight: 600;
+        }
+
+        /* Media Query for responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 15px;
+            }
+
+               }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Disease Precaution For Basal Cell Carcinoma (BCC)</h1>
+      </header>
+
+    <section>
+        <h2>Important Precautions</h2>
+		<ul class="precaution-list">
+            <li><strong>Avoid tanning beds:</strong> These can increase the risk of developing skin cancer.</li>
+            <li><strong>Seek shade: </strong> Always stay in the shade when possible to reduce UV exposure.</li>
+            <li><strong>Wear protective clothing: </strong> Hats, UV-blocking clothing, and sunglasses can help protect you from harmful UV rays.</li>
+            <li><strong>Get regular screenings: </strong> Have a dermatologist check your skin regularly, especially if you have a history of skin cancer.</li>
+            <li><strong>Use sunscreen: </strong>Apply sunscreen with an SPF of 50 or higher to prevent sunburn and reduce the risk of further damage.</li>
+        </ul>
+    </section>
+
+  
+</body>
+</html>
+{% endblock content %}

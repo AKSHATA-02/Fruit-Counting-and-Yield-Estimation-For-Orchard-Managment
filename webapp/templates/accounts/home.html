@@ -1,0 +1,40 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 mb-4">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="mb-0">Welcome to the Fruit Counting and Yield Estimation System</h2>
+                </div>
+                <div class="card-body text-center">
+                    <p class="lead mb-4">Choose an action to get started:</p>
+                    <div class="d-flex justify-content-center gap-4 mb-4 flex-wrap">
+                        <button id="show-upload-form" class="btn btn-primary btn-lg">Upload Image or Video</button>
+                        <a href="/live-detection/" class="btn btn-success btn-lg">Live Detection</a>
+                    </div>
+                    <form id="upload-form" method="post" enctype="multipart/form-data" style="display: none;" action="{% url 'predictImage1' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <input type="file" class="form-control" name="document" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const showUploadBtn = document.getElementById('show-upload-form');
+        const uploadForm = document.getElementById('upload-form');
+        if (showUploadBtn) {
+            showUploadBtn.addEventListener('click', function() {
+                uploadForm.style.display = 'block';
+                showUploadBtn.style.display = 'none';
+            });
+        }
+    });
+</script>
+{% endblock %}

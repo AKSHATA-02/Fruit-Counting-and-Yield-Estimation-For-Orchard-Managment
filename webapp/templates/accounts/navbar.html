@@ -1,0 +1,74 @@
+{% load static %}
+
+<style>
+  body {
+    font-family: Arial, sans-serif; /* Set a default font for the body */
+  }
+
+  .hello-msg {
+    font-size: 18px;
+    color: #0b0b0b;
+    margin-right: 20px;
+  }
+
+  /* Custom Navbar Color */
+  .custom-navbar {
+    background-color: #393939; /* Change this to your desired color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  }
+
+  .navbar-brand {
+    font-size: 24px; /* Increase brand font size */
+    font-weight: bold; /* Make brand text bold */
+    color: #003366; /* Change brand color to dark blue */
+  }
+
+  .navbar-nav .nav-item {
+    margin-left: 20px; /* Add space between nav items */
+  }
+
+  .custom-navbar .nav-link {
+    color: #003366; /* Change link color to dark blue */
+    font-weight: 500; /* Slightly bold links */
+    transition: color 0.3s, background-color 0.3s; /* Smooth transition */
+  }
+
+  .custom-navbar .nav-link:hover {
+    color: #0b0b0b; /* Change hover color */
+    background-color: rgba(255, 255, 255, 0.1); /* Add subtle background on hover */
+    border-radius: 5px; /* Rounded corners on hover */
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar-nav {
+      text-align: center; /* Center nav items on small screens */
+    }
+
+    .navbar-nav .nav-item {
+      margin: 10px 0; /* Stack nav items vertically */
+    }
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <a class="navbar-brand" href="#">Fruit Count</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'home2' %}">Upload Image</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'predictImage' %}">Live Detection</a></li>
+      {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'yieldEstimation' %}">Yield Estimation</a></li> {% endcomment %}
+      {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li> {% endcomment %}
+      {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li> {% endcomment %}
+      {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

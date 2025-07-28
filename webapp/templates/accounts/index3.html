@@ -1,0 +1,101 @@
+{% load static %}
+
+<style>
+
+		body,
+		html
+		{
+		background-image:url("https://img.freepik.com/free-photo/top-view-colored-apples-leaf-branches-green-surface_141793-18593.jpg?semt=ais_hybrid");
+			margin: 0;
+			background-size: 100% 100%;
+			padding: 0;
+			height: 100%;
+		}
+
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-item: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .nav-item {
+    margin: 0 100px;
+  }
+
+.nav-link {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: white !important;
+    background: linear-gradient(45deg, #ff6600, #ffcc00);
+    position: absolute;
+    top: 40%;
+    left: 45%; /* Move buttons slightly left */
+    transform: translateX(-50%); /* Ensures proper centering */
+}
+
+.nav-item:nth-child(2) .nav-link {
+    left: 55%; /* Adjust second button separately */
+}
+
+
+  .nav-link:hover {
+    background: linear-gradient(45deg, #ffcc00, #ff6600);
+<!--    transform: scale(1.1);-->
+  }
+
+  .navbar-brand img {
+    height: 50px;
+    width: auto;
+    margin-right: 20px;
+  }
+
+  .user-section {
+    position: absolute;
+    right: 20px;
+  }
+</style>
+
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--  <div class="container">-->
+<!--    <a class="navbar-brand" href="#">-->
+<!--      <img src="" alt="Logo">-->
+<!--    </a>-->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <h1 class="ml3" style="text-align: center; color: #000">APPLE DETECTION SYSTEM</h1>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <ol class="nav-item active">
+          <a class="nav-link" href="{% url 'home2' %}">UPLOAD</a>
+        </ol>
+        <ol class="nav-item active">
+          <a class="nav-link" href="{% url 'home3' %}">LIVE</a>
+        </ol>
+      </ul>
+    </div>
+
+    <div class="user-section">
+<!--      <span class="hello-msg">Hello, {{ request.user }}</span>-->
+<!--      <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>-->
+    </div>
+  </div>
+</nav>

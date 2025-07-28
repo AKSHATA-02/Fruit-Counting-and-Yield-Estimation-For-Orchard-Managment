@@ -1,0 +1,140 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soil</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/particles.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="{% static 'js/animations.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-zrnmn8R8KkWl12rAZFt4yKjxplaDaT7/EUkKm7AovijfrQItFWR7O/JJn4DAa/gx" crossorigin="anonymous">
+
+    <style>
+        body, html {
+            height: 100%; /* Full height for body and html */
+            margin: 0; /* Remove default margin */
+            background-color: #f4f4f4; /* Light background for contrast */
+        }
+
+        .user_card {
+            width: 500px; /* Fixed width for the card */
+            margin: 50px auto; /* Center the card with margin */
+            padding: 20px; /* Padding inside the card */
+            box-shadow: 0 4px 8px rgba(11, 11, 12, 0.2); /* Soft shadow for depth */
+            border-radius: 10px; /* Rounded corners */
+            background: #ffffff; /* Dark background for the card */
+            color: #fff; /* White text color */
+        }
+
+        #form-title {
+            text-align: center; /* Center title */
+            margin-bottom: 20px; /* Space below title */
+        }
+
+        .login_btn {
+            width: 100%;
+            background: #33ccff !important;
+            color: white !important;
+        }
+
+        .login_btn:focus {
+            box-shadow: none !important;
+            outline: 0px !important;
+        }
+
+        .input-group-text {
+            background: #f7ba5b !important;
+            color: white !important;
+            border: 0 !important;
+            border-radius: 0.25rem 0 0 0.25rem !important;
+        }
+
+        .input_user, .input_pass:focus {
+            box-shadow: none !important;
+            outline: 0px !important;
+        }
+
+        #messages {
+            background-color: grey;
+            color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        /* Button Styles */
+        .btn1, .btn2 {
+            display: block;
+            cursor: pointer;
+            text-transform: uppercase;
+            outline: none;
+            overflow: hidden;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            background-color: #fad692;
+            padding: 17px 60px;
+            margin: 20px auto; /* Center buttons */
+            border-radius: 50px; /* Rounded corners */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
+            position: relative; /* For after pseudo-element */
+        }
+
+        .btn1:after, .btn2:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #2c5f2d;
+            transition: all .5s ease-in-out;
+            transform: translateX(-98%) translateY(-25%) rotate(45deg);
+        }
+
+        .btn1:hover:after, .btn2:hover:after {
+            transform: translateX(-9%) translateY(-25%) rotate(45deg);
+        }
+
+        /* Title Animation */
+        .ml3 {
+            text-align: center;
+            color: #121010;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script type="text/javascript">
+        // Wrap every letter in a span
+        var textWrapper = document.querySelector('.ml3');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml3 .letter',
+                opacity: [0, 1],
+                easing: "easeInOutQuad",
+                duration: 2250,
+                delay: (el, i) => 150 * (i + 1)
+            }).add({
+                targets: '.ml3',
+                opacity: 0,
+                duration: 1000,
+                easing: "easeOutExpo",
+                delay: 1000
+            });
+    </script>
+
+    <!-- <h1 class="ml3">APPLE DETECTION SYSTEM</h1> -->
+
+    <div class="user_card">
+        <h3 id="form-title">Upload Document</h3>
+        <form action="{% url 'predictImage1' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" id='doc' class="btn1" name="document">
+            <button class="btn2" type="submit"><span>Upload</span></button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock content %}

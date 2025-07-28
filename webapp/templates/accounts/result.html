@@ -1,0 +1,322 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-zrnmn8R8KkWl12rAZFt4yKjxplaDaT7/EUkKm7AovijfrQItFWR7O/JJn4DAa/gx" crossorigin="anonymous">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f7ba5b;
+        }
+
+        /* Card Styles */
+        .user_card {
+            width: 80%;
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(210, 236, 242, 0.733);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        #form-title {
+            color: #fff;
+        }
+
+        .login_btn {
+            width: 100%;
+            background: #33ccff !important;
+            color: white !important;
+        }
+
+        .input-group-text {
+            background: #f7ba5b !important;
+            color: white !important;
+            border: 0 !important;
+            border-radius: 0.25rem 0 0 0.25rem !important;
+        }
+
+        #messages {
+            background-color: grey;
+            color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        /* Video Display Styles */
+        .video-container {
+            width: 100%;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        #video-display {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+
+        /* Button Styles */
+        .btn1 {
+            border: solid 2px;
+            display: block;
+            cursor: pointer;
+            text-transform: uppercase;
+            outline: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            background-color: #222;
+            padding: 17px 60px;
+            margin: 20px auto;
+            text-decoration: none;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
+            width: 20%;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
+
+        .display-4 {
+            font-weight: 600;
+        }
+
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+
+        .img-fluid {
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        .shadow {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Animation for count updates */
+        @keyframes countUpdate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        #current-count, #max-count {
+            transition: all 0.3s ease;
+        }
+
+        #current-count.updated, #max-count.updated {
+            animation: countUpdate 0.3s ease;
+        }
+
+        .count-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .count-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+        }
+        .video-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .updated {
+            animation: countUpdate 0.3s ease;
+        }
+        #show-final-count {
+            transition: all 0.3s ease;
+        }
+        #show-final-count:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="row g-4">
+                    <!-- Live Count Container -->
+                    <div class="col-md-5">
+                        <div class="card shadow border-0 h-100">
+                            <div class="card-header bg-primary text-white text-center">
+                                <h4 class="mb-0">Live Count</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-4">
+                                    <div class="col-6">
+                                        <div class="count-box text-center p-3">
+                                            <h6 class="text-muted mb-2">Current Count</h6>
+                                            <h2 id="current-count" class="display-4 text-primary mb-0">0</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="count-box text-center p-3">
+                                            <h6 class="text-muted mb-2">Maximum Count</h6>
+                                            <h2 id="max-count" class="display-4 text-primary mb-0">0</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mb-4">
+                                    <button id="show-final-results" class="btn btn-success btn-lg mb-3">Final Result</button>
+                                    <div id="final-results-card" style="display: none;">
+                                        <div class="count-box text-center p-3 mb-3">
+                                            <h6 class="text-muted mb-2">Total Fruits Detected</h6>
+                                            {% if is_image %}
+                                            <h2 class="display-4 text-success mb-0">{{ class }}</h2>
+                                            {% else %}
+                                            <h2 class="display-4 text-success mb-0">{{ count }}</h2>
+                                            {% endif %}
+                                        </div>
+                                        {% if is_video %}
+                                        <div class="count-box text-center p-3">
+                                            <h6 class="text-muted mb-2">Maximum in Single Frame</h6>
+                                            <h2 class="display-4 text-success mb-0">{{ max_count }}</h2>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Detection Visualization Container -->
+                    <div class="col-md-7">
+                        <div class="card shadow border-0 h-100">
+                            <div class="card-header bg-primary text-white text-center">
+                                <h4 class="mb-0">Detection Visualization</h4>
+                            </div>
+                            <div class="card-body d-flex align-items-center justify-content-center">
+                                {% if is_video %}
+                                <div class="video-container w-100">
+                                    <img id="video-display" class="img-fluid rounded" alt="Video Frame">
+                                </div>
+                                {% elif is_image %}
+                                <img src="data:image/jpeg;base64,{{ image_data }}" class="img-fluid rounded" alt="Detection Result">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if is_video %}
+    <script>
+        const frames = {{ frames|safe }};
+        let currentFrame = 0;
+        const videoDisplay = document.getElementById('video-display');
+        const currentCountElement = document.getElementById('current-count');
+        const maxCountElement = document.getElementById('max-count');
+        let maxCount = 0;
+
+        function updateFrame() {
+            if (currentFrame < frames.length) {
+                const frameData = frames[currentFrame];
+                
+                // Update video display
+                videoDisplay.src = 'data:image/jpeg;base64,' + frameData.image;
+                
+                // Update current count with animation
+                const currentCount = frameData.count;
+                currentCountElement.textContent = currentCount;
+                currentCountElement.classList.add('updated');
+                setTimeout(() => currentCountElement.classList.remove('updated'), 300);
+                
+                // Update max count without animation
+                maxCount = Math.max(maxCount, currentCount);
+                maxCountElement.textContent = maxCount;
+                
+                currentFrame++;
+                setTimeout(updateFrame, 100); // Update every 100ms (10 FPS)
+            }
+        }
+
+        // Start the video playback
+        updateFrame();
+
+        // Show Final Results on the same card
+        document.getElementById('show-final-results').addEventListener('click', function() {
+            document.getElementById('final-results-card').style.display = 'block';
+            this.style.display = 'none';
+        });
+    </script>
+    {% else %}
+    <script>
+        // Show Final Results on the same card for image
+        document.getElementById('show-final-results').addEventListener('click', function() {
+            document.getElementById('final-results-card').style.display = 'block';
+            this.style.display = 'none';
+        });
+    </script>
+    {% endif %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</body>
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center min-vh-100">
+	<div class="col-md-5">
+		<div class="card shadow-lg border-0">
+			<div class="card-header text-center bg-white border-0 pb-0">
+				<h2 class="fw-bold mb-0" style="color: var(--primary-color);">Fruit Counting and Yield Estimation System</h2>
+				<p class="mb-0 mt-2" style="color: var(--accent-color); font-weight: 500;">Create your account</p>
+			</div>
+			<div class="card-body p-4">
+				<form method="POST" autocomplete="off">
+					{% csrf_token %}
+					{% if form.errors %}
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							{{ form.errors }}
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					{% endif %}
+					<div class="mb-3">
+						<label for="id_username" class="form-label">Username</label>
+						<div class="input-group">
+							<span class="input-group-text bg-white"><i class="fa fa-user"></i></span>
+							{{ form.username }}
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="id_email" class="form-label">Email</label>
+						<div class="input-group">
+							<span class="input-group-text bg-white"><i class="fa fa-envelope"></i></span>
+							{{ form.email }}
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="id_password1" class="form-label">Password</label>
+						<div class="input-group">
+							<span class="input-group-text bg-white"><i class="fa fa-lock"></i></span>
+							{{ form.password1 }}
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="id_password2" class="form-label">Confirm Password</label>
+						<div class="input-group">
+							<span class="input-group-text bg-white"><i class="fa fa-lock"></i></span>
+							{{ form.password2 }}
+						</div>
+					</div>
+					<div class="d-grid mb-3">
+						<button type="submit" class="btn btn-success btn-lg" style="background: var(--accent-color); border: none;">Sign Up</button>
+					</div>
+				</form>
+				<div class="text-center mt-3">
+					<span>Already have an account? <a href="/login/" style="color: var(--accent-color); font-weight: 500;">Login</a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
